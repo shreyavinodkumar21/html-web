@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atom Calculation</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <h1>Atom Calculation</h1>
+    <p>Please select the calculation type:</p>
+    <select id="calculationType" onchange="updateOptions()">
+        <option value="distance">Distance</option>
+        <option value="angle">Angle</option>
+    </select>
+
+    <div id="inputFields">
+        <p>Enter the residue number and atom name:</p>
+        <label for="residue1">Residue 1:</label>
+        <input type="number" id="residue1" name="residue1">
+
+        <label for="atom1">Atom 1:</label>
+        <input type="text" id="atom1" name="atom1">
+
+        <div id="residue2Atom2Fields">
+            <label for="residue2">Residue 2:</label>
+            <input type="number" id="residue2" name="residue2">
+
+            <label for="atom2">Atom 2:</label>
+            <input type="text" id="atom2" name="atom2">
+        </div>
+
+        <div id="residue3Atom3Fields" style="display: none;">
+            <label for="residue3">Residue 3:</label>
+            <input type="number" id="residue3" name="residue3">
+
+            <label for="atom3">Atom 3:</label>
+            <input type="text" id="atom3" name="atom3">
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+    </div>
+
+    <div id="output">
+        <!-- The calculation results will be displayed here -->
+    </div>
+
+    <script>
+        function updateOptions() {
+            const calculationType = document.getElementById("calculationType").value;
+            const residue2Atom2Fields = document.getElementById("residue2Atom2Fields");
+            const residue3Atom3Fields = document.getElementById("residue3Atom3Fields");
+
+            if (calculationType === "distance") {
+                residue2Atom2Fields.style.display = "block";
+                residue3Atom3Fields.style.display = "none";
+            } else if (calculationType === "angle") {
+                residue2Atom2Fields.style.display = "block";
+                residue3Atom3Fields.style.display = "block";
+            }
+        }
+
+        function calculate() {
+            const calculationType = document.getElementById("calculationType").value;
+            const residue1 = document.getElementById("residue1").value;
+            const atom1 = document.getElementById("atom1").value;
+
+            let resultText = "";
+
+            if (calculationType === "distance") {
+                const residue2 = document.getElementById("residue2").value;
+                const atom2 = document.getElementById("atom2").value;
+
+                // Perform distance calculation with residue1, atom1, residue2, atom2
+                // Replace the following lines with your actual distance calculation logic
+
+                const distance = calculateDistance(residue1, atom1, residue2, atom2);
+
+                resultText = `Distance calculation: Residue1 ${residue1}, Atom1 ${atom1}, Residue2 ${residue2}, Atom2 ${atom2}. Distance: ${distance.toFixed(2)}`;
+            } else if (calculationType === "angle") {
+                const residue2 = document.getElementById("residue2").value;
+                const atom2 = document.getElementById("atom2").value;
+                const residue3 = document.getElementById("residue3").value;
+                const atom3 = document.getElementById("atom3").value;
+
+                // Perform angle calculation with residue1, atom1, residue2, atom2, residue3, atom3
+                // Replace the following lines with your actual angle calculation logic
+
+                const angle = calculateAngle(residue1, atom1, residue2, atom2, residue3, atom3);
+
+                resultText = `Angle calculation: Residue1 ${residue1}, Atom1 ${atom1}, Residue2 ${residue2}, Atom2 ${atom2}, Residue3 ${residue3}, Atom3 ${atom3}. Angle: ${angle.toFixed(2)} degrees`;
+            }
+
+            document.getElementById("output").innerHTML = `<p>${resultText}</p>`;
+        }
+
+        function calculateDistance(residue1, atom1, residue2, atom2) {
+            // Implement your distance calculation logic here
+            // Return the calculated distance
+            // For example:
+            return 0; // Replace this with your distance calculation
+        }
+
+        function calculateAngle(residue1, atom1, residue2, atom2, residue3, atom3) {
+            // Implement your angle calculation logic here
+            // Return the calculated angle
+            // For example:
+            return 0; // Replace this with your angle calculation
+        }
+    </script>
+</body>
+</html>
